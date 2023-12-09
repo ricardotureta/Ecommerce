@@ -3,8 +3,6 @@
 import os
 import sys
 
-from store.models import Product
-
 def main():
     """Run administrative tasks."""
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ecommerce.settings")
@@ -18,12 +16,5 @@ def main():
         ) from exc
     execute_from_command_line(sys.argv)
 
-def prepopulate_products():
-    Product.objects.create(name='Produto 1', price=19.99, digital=0, image='headphones.jpg')
-    Product.objects.create(name='Produto 2', price=12.99, digital=0, image='headphones1.jpg')
-    # Adicione mais produtos conforme necessário
-
-
 if __name__ == "__main__":
     main()
-    prepopulate_products()

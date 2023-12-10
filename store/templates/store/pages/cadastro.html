@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    {% load static %}
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro</title>
+    <link rel="stylesheet" href="{% static '/css/cadastro.css'%}">
+</head>
+<body>
+
+  <div class="container">
+    <h2>Cadastro</h2>
+    <form action="{% url 'usuario_cadastro' %}" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        {{field.label_tag}}
+        {{field}}
+        {% endfor %}
+      <a href="/login">Já tem? Clique aqui!</a>
+      <input type="submit" value="Cadastrar">
+    </form>
+  </div>
+
+</body>
+</html>

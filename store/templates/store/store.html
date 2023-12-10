@@ -9,13 +9,14 @@
 				<h6><strong>{{product.name}}</strong></h6>
 				<hr>
 
-				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
-				<a class="btn btn-outline-success" href="#">View</a>
+				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Adicionar ao carrinho</button>
+				<a class="btn btn-outline-success" style="display:none;"href="#">View</a>
 				<h4 style="display: inline-block; float: right"><strong>${{product.price}}</strong></h4>
 
 			</div>
 		</div>
 		{% endfor %}
+		
 	</div>
 
 {% endblock content %}

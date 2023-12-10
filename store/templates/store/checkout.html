@@ -16,22 +16,22 @@
 					
 					<div id="shipping-info">
 						<hr>
-						<p>Shipping Information:</p>
+						<p>Informação de envio:</p>
 						<hr>
 						<div class="form-field">
-							<input class="form-control" type="text" name="address" placeholder="Address..">
+							<input class="form-control" type="text" name="address" placeholder="Endereço..">
 						</div>
 						<div class="form-field">
-							<input class="form-control" type="text" name="city" placeholder="City..">
+							<input class="form-control" type="text" name="city" placeholder="Cidade..">
 						</div>
 						<div class="form-field">
-							<input class="form-control" type="text" name="state" placeholder="State..">
+							<input class="form-control" type="text" name="state" placeholder="Estado..">
 						</div>
 						<div class="form-field">
-							<input class="form-control" type="text" name="zipcode" placeholder="Zip code..">
+							<input class="form-control" type="text" name="zipcode" placeholder="Cep..">
 						</div>
 						<div class="form-field">
-							<input class="form-control" type="text" name="country" placeholder="Zip code..">
+							<input class="form-control" type="text" name="country" placeholder="País..">
 						</div>
 					</div>
 
@@ -42,17 +42,17 @@
 
 			<br>
 			<div class="box-element hidden" id="payment-info">
-				<small>Paypal Options</small>
-				<button id="make-payment">Make payment</button>
+				<small>Opções Paypal</small>
+				<button id="make-payment">Fazer pagamento</button>
 			</div>
 			
 		</div>
 
 		<div class="col-lg-6">
 			<div class="box-element">
-				<a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+				<a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Voltar ao carrinho</a>
 				<hr>
-				<h3>Order Summary</h3>
+				<h3>resumo do pedido</h3>
 				<hr>
 				{% for item in items %}
 				<div class="cart-row">
@@ -62,7 +62,7 @@
 					<div style="flex:1"><p>x{{item.quantity}}</p></div>
 				</div>
 				{% endfor %}
-				<h5>Items:   {{order.get_cart_items}}</h5>
+				<h5>Itens:   {{order.get_cart_items}}</h5>
 				<h5>Total:   ${{order.get_cart_total|floatformat:2}}</h5>
 			</div>
 		</div>

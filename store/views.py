@@ -35,7 +35,7 @@ def login(request):
             }
         )
     else:
-        return redirect('/home')
+        return redirect('/')
 			
 @csrf_exempt
 def usuario_cadastro(request):
@@ -68,7 +68,7 @@ def usuario_cadastro(request):
             }
         )
     else:
-        return redirect('/home')
+        return redirect('/')
     
 def sair(request):
     if request.method == 'POST':
@@ -123,9 +123,10 @@ def updateItem(request):
 	order, created = Order.objects.get_or_create(customer=customer, complete=False)
 
 	orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
-
+ 
 	if action == 'add':
-		orderItem.quantity = (orderItem.quantity + 1)
+		if orderItem.quantity < product.estoque:
+			orderItem.quantity = (orderItem.quantity + 1)
 	elif action == 'remove':
 		orderItem.quantity = (orderItem.quantity - 1)
 
@@ -150,9 +151,19 @@ def processOrder(request):
 	total = float(data['form']['total'])
 	order.transaction_id = transaction_id
 
-	if total == order.get_cart_total:
-		order.complete = True
-	order.save()
+	try:
+		order_items = OrderItem.objects.filter(order=order)
+
+		for orderItem in order_items:
+			product = Product.objects.get(pk=orderItem.product.id)
+			if product.estoque >= orderItem.quantity:
+				product.estoque = product.estoque - orderItem.quantity
+				product.save()
+			else:
+				raise ValidationError('Sem estoque')
+
+	except OrderItem.DoesNotExist:
+		raise ValidationError('Nenhum item de pedido encontrado para o pedido.')
 
 	if order.shipping == True:
 		ShippingAddress.objects.create(
@@ -163,5 +174,5 @@ def processOrder(request):
 		state=data['shipping']['state'],
 		zipcode=data['shipping']['zipcode'],
 		)
-
+  
 	return JsonResponse('Payment submitted..', safe=False)

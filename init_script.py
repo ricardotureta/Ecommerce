@@ -13,12 +13,12 @@ def create_super_user():
 from store.models import Product
 
 def create_products():
-    Product.objects.create(name='Fones de ouvido', price=199.99, digital=0, image='headphones.jpg')
-    Product.objects.create(name='Carregador', price=20.99, digital=0, image='shirt.jpg')
-    Product.objects.create(name='Cabo HDMI', price=199.99, digital=0, image='shoes.jpg')
-    Product.objects.create(name='Notebook', price=2999.99, digital=0, image='sourcecode.jpg')
-    Product.objects.create(name='TV Smart curva', price=1999.99, digital=0, image='tv.jpg')
-    Product.objects.create(name='Celular', price=999.99, digital=0, image='watch.jpg')
+    Product.objects.create(name='Fones de ouvido', price=199.99, digital=0, image='headphones.jpg', estoque=100)
+    Product.objects.create(name='Carregador', price=20.99, digital=0, image='shirt.jpg', estoque=100)
+    Product.objects.create(name='Cabo HDMI', price=199.99, digital=0, image='shoes.jpg', estoque=100)
+    Product.objects.create(name='Notebook', price=2999.99, digital=0, image='sourcecode.jpg', estoque=100)
+    Product.objects.create(name='TV Smart curva', price=1999.99, digital=0, image='tv.jpg', estoque=100)
+    Product.objects.create(name='Celular', price=999.99, digital=0, image='watch.jpg', estoque=100)
 
 
 if __name__ == '__main__':
